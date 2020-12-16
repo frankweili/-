@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>画板</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+
+<canvas id="canvas"></canvas>
+
+
+
+    <script>
+  const canvas = document.getElementById('canvas');
+
+canvas.width=document.documentElement.clientWidth
+canvas.height=document.documentElement.clientHeight
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'black';
+ctx.strokeStyle='black'
+
+ctx.lineCap='round';
+
+let painting=false
+
+function f(x1,x2,y1,y2){
+
+    ctx.beginPath();
+  ctx.moveTo(x1, x2);
+  ctx.lineTo(y1, y2);
+ 
+  ctx.closePath();
+  ctx.stroke();
+}
+
+
+  
+  
+
+canvas.onmousedown=(e)=>{
+    painting=true
+    last=[e.clientX,e.clientY]
+}
+
+ canvas.onmouseup=()=>{
+    painting=false}
+
+canvas.onmousemove=(e)=>{
+    if(painting===true){ 
+        f(last[0],last[1],e.clientX,e.clientY)
+        last=[e.clientX,e.clientY]
+     
+} else{
+    console.log('jj')
+}
+ 
+}
+
+
+
+
+
+    </script>
+</body>
+</html>
